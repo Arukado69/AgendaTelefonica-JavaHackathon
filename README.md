@@ -9,7 +9,6 @@
 4. Eliminar Contacto
 5. Modificar Contacto
 6. Salir
-  /// /// //// //// //// //// /// /// //// //// //// //// /// /// //// //// //// ////
 
 > Proyecto **Hackatón 2 Creacion de una Agenda**  
 > Aplicación de consola que implementa un sistema de **gestión de contactos** usando **Programación Orientada a Objetos (POO)** en Java.
