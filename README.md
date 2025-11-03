@@ -108,7 +108,7 @@ MENÚ PRINCIPAL
 |-------------|-------------------------------|
 | **Omar Albis** | Lógica del programa, Implementación de la clase `Main.java`, validaciones CRUD, estructura del menú principal y documentación general |
 | **Joana Barbosa** | Implementación de la clase `Contacto.java`, manejo de atributos y métodos base |
-| **Kevin Kirino** | Implementación de la clase `Contacto.java`, sobreescritura de métodos (`equals`, `hashCode`, `toString`) |
+| **Kevin Quirino** | Implementación de la clase `Contacto.java`, sobreescritura de métodos (`equals`, `hashCode`, `toString`) |
 | **Daniel Zepahua** | Desarrollo de la clase `AgendaService.java`, lógica interna de gestión y almacenamiento de contactos |
 | **Ricardo Saucedo** | Apoyo en la clase `Main.java`, documentación y pruebas finales, validación del flujo de ejecución |
 
