@@ -1,14 +1,16 @@
 package Model;
 
+import java.util.Objects;
+
 public class Contacto {
 
-    private int id;
+    private int id = 0;
     private String nombre;
     private String apellido;
     private String telefono;
 
     public Contacto (int id, String nombre, String apellido, String telefono){
-        this.id = id;
+        this.id = id++;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -48,11 +50,19 @@ public class Contacto {
     }
 
     @Override
-    public String toString() {
-        return "Contacto->" +
-                "id: " + id +
-                ", nombre: '" + nombre + '\'' +
-                ", apellido: '" + apellido +
-                ", telefono: '" + telefono;
+    public boolean equals(Object obj){
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Contacto contacto = (Contacto) obj;
+        return nombre.equalsIgnoreCase(contacto.nombre) && apellido.equalsIgnoreCase(contacto.apellido);
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(nombre.toLowerCase(), apellido.toLowerCase());
+        }
+
+    @Override public String toString() {
+        return "Contacto [Nombre: " + nombre + ", Apellido: " + apellido + ", Teléfono: " + telefono + "]";
     }
 }
