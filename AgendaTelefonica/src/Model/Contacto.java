@@ -10,14 +10,15 @@ public class Contacto {
     private String apellido;
     private String telefono;
 
+    // Constructor
     public Contacto (String nombre, String apellido, String telefono){
         this.id = nextId++;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-
     }
 
+    // --- Métodos Getters y Setters ---
     public int getId() {
         return id;
     }
@@ -50,6 +51,8 @@ public class Contacto {
         this.telefono = telefono;
     }
 
+    // --- Define si dos objetos Contacto son iguales.
+    // --- La igualdad se basa en que el nombre y el apellido sean iguales (sin importar mayúsculas/minúsculas).
     @Override
     public boolean equals(Object obj){
         if (this == obj) return true;
@@ -58,11 +61,13 @@ public class Contacto {
         return nombre.equalsIgnoreCase(contacto.nombre) && apellido.equalsIgnoreCase(contacto.apellido);
     }
 
+    // Usa los campos clave (nombre y apellido) convertidos a minúsculas para garantizar que el hash sea el mismo si equals() devuelve true.
     @Override
     public int hashCode(){
         return Objects.hash(nombre.toLowerCase(), apellido.toLowerCase());
         }
 
+   // --- toString
     @Override public String toString() {
         return "Contacto [Nombre: " + nombre + ", Apellido: " + apellido + ", Teléfono: " + telefono + "]";
     }
