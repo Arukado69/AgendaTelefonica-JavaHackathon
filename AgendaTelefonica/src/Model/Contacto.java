@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Contacto {
 
-    private int nextId = 1;
+    private static int nextId = 1;
     public int id;
     private String nombre;
     private String apellido;
@@ -68,7 +68,9 @@ public class Contacto {
         }
 
    // --- toString
-    @Override public String toString() {
-        return "Contacto [Nombre: " + nombre + ", Apellido: " + apellido + ", Teléfono: " + telefono + "]";
-    }
+   @Override
+   public String toString() {
+       return String.format("ID: %d | %s %s | 📞 %s", id, nombre, apellido, telefono);
+   }
+
 }

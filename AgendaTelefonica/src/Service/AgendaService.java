@@ -25,7 +25,7 @@ public class AgendaService {
         this.contactos = new ArrayList<>(maxCapacity);
     }
 
-    //Añadir contacto
+    // Añadir contacto con validación de duplicados
     public void addContact(Contacto contacto) {
         if (contacto == null) {
             throw new IllegalArgumentException("No se puede añadir un contacto sin datos.");
@@ -35,12 +35,25 @@ public class AgendaService {
                     "Agenda llena. No se puede añadir el contacto. Límite: " + this.maxCapacity
             );
         }
+
+        // Verificar duplicado (mismo nombre, apellido y teléfono)
+        boolean existe = contactos.stream().anyMatch(c ->
+                c.getNombre().equalsIgnoreCase(contacto.getNombre()) &&
+                        c.getApellido().equalsIgnoreCase(contacto.getApellido()) &&
+                        c.getTelefono().equals(contacto.getTelefono())
+        );
+
+        if (existe) {
+            throw new IllegalArgumentException("Ya existe un contacto con el mismo nombre, apellido y teléfono.");
+        }
+
         contactos.add(contacto);
-        System.out.println("¡Contacto añadido! Quedan " + getCapacityRest() + " espacios para añadir");
+        System.out.println("✅ ¡Contacto añadido! Quedan " + getCapacityRest() + " espacios disponibles.");
     }
 
 
-     //Modifica un contacto existente, buscándolo por su ID.
+
+    //Modifica un contacto existente, buscándolo por su ID.
     public void modifyContact(int id, Contacto datosNuevos) {
         Contacto contactoExistente = findById(id);
         updateData(contactoExistente, datosNuevos);
@@ -60,16 +73,20 @@ public class AgendaService {
 
     // Busqueda Múltiple para encontrar todas las similitudes
 
+    // Búsqueda parcial e insensible a mayúsculas
     public List<Contacto> findAllByName(String name) {
-        return findAll(contacto -> contacto.getNombre().equals(name));
-    }
-
-    public List<Contacto> findAllByPhone(String telefono) {
-        return findAll(contacto -> contacto.getTelefono().equals(telefono));
+        String term = name.toLowerCase();
+        return findAll(c -> c.getNombre().toLowerCase().contains(term));
     }
 
     public List<Contacto> findAllByApellido(String apellido) {
-        return findAll(contacto -> contacto.getApellido().equals(apellido));
+        String term = apellido.toLowerCase();
+        return findAll(c -> c.getApellido().toLowerCase().contains(term));
+    }
+
+    public List<Contacto> findAllByPhone(String telefono) {
+        String term = telefono.toLowerCase();
+        return findAll(c -> c.getTelefono().toLowerCase().contains(term));
     }
 
     // Busqueda unica de id
