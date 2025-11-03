@@ -4,13 +4,14 @@ import java.util.Objects;
 
 public class Contacto {
 
-    private int id = 0;
+    private int nextId = 1;
+    public int id;
     private String nombre;
     private String apellido;
     private String telefono;
 
-    public Contacto (int id, String nombre, String apellido, String telefono){
-        this.id = id++;
+    public Contacto (String nombre, String apellido, String telefono){
+        this.id = nextId++;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
